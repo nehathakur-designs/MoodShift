@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Try Framer Motion -->
+  <script src="https://unpkg.com/framer-motion@11.0.8/dist/framer-motion.js"></script>
+  <style>body { font-family: sans-serif; display: flex; justify-content: center; align-items:center; height: 100vh; overflow:hidden; }</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { motion } = window.Motion || {};
+    
+    // Fallback if window.Motion is undef
+    if (!motion) {
+       document.getElementById('root').innerHTML = '<h1>Framer motion failed to load as window.Motion</h1>';
+    } else {
+       const App = () => {
+          return (
+             <motion.div 
+               animate={{ x: [0, 100, 0] }} 
+               transition={{ duration: 2, repeat: Infinity }}
+               style={{ width: 100, height: 100, background: 'red', borderRadius: '10px' }}
+             >
+                Works!
+             </motion.div>
+          );
+       };
+       const root = ReactDOM.createRoot(document.getElementById('root'));
+       root.render(<App />);
+    }
+  </script>
+</body>
+</html>
